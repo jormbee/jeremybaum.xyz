@@ -23,8 +23,9 @@ body.dark-mode {
     color: #f5f5f5;
 }
 
-
 .name {
+    display: inline-block;
+    width: auto;
     font-weight: 700;
     font-size: 43px;
     margin: 0;
@@ -123,12 +124,9 @@ a {
     transition: color .25s, fill .25s, opacity .25s;
 }
 
-body.dark-mode .article-link {
-    color: #006eff;
+.article-link.dark-mode {
+    color: #9fa8b4;
 }
-/* .article-link.dark-mode {
-    color: #006eff;
-} */
 
 
 .article-link:hover {
@@ -233,31 +231,15 @@ body.dark-mode .article-link {
     position: fixed;
     bottom: 10px;
     right: 20px;
-}
+  }
 
-button {
-    color: white;
-    background-color: black;
+  button {
+    color: black;
+    background-color: white;
     border-radius: 5px;
-}
+  }
 
-button:focus {
-    color: white;
-    background-color: black;
-}
-
-body.dark-mode button {
-    color: black;
-    background-color: white;
-}
-
-body.dark-mode button:focus {
-    color: black;
-    background-color: white;
-}
-
-
-
+  
   /* Define the animation */
   @keyframes typing {
     from { max-width: 0 }
@@ -273,4 +255,3 @@ body.dark-mode button:focus {
         typing 2.5s steps(40, end) ; /* The animation itself */
     position: relative; /* Allows positioning of the typing cursor */
   }
-
