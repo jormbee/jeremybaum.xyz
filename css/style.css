@@ -124,8 +124,8 @@ a {
     transition: color .25s, fill .25s, opacity .25s;
 }
 
-.article-link.dark-mode {
-    color: #9fa8b4;
+body.dark-mode .article-link {
+    color: #c6dfff;
 }
 
 
@@ -238,6 +238,22 @@ a {
     background-color: white;
     border-radius: 5px;
   }
+
+  button:focus {
+    color: white;
+    background-color: black;
+}
+
+  body.dark-mode button {
+    color: black;
+    background-color: white;
+}
+
+body.dark-mode button:focus {
+    color: black;
+    background-color: white;
+}
+
 
   
   /* Define the animation */
