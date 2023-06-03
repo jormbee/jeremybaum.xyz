@@ -255,3 +255,22 @@ body.dark-mode button:focus {
     color: black;
     background-color: white;
 }
+
+
+
+  /* Define the animation */
+  @keyframes typing {
+    from { max-width: 0 }
+    to { max-width: 100% }
+  }
+
+  /* Apply the animation to the text */
+  .typewriter {
+    overflow: hidden; /* Ensures the text is not visible outside the containing element */
+    border-right: .15em solid rgb(173, 173, 173); /* reates the typewriter cursor */
+    white-space: nowrap; /* Prevents the text from wrapping */
+    animation: 
+        typing 2.5s steps(40, end) ; /* The animation itself */
+    position: relative; /* Allows positioning of the typing cursor */
+  }
+
