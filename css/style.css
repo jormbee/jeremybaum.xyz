@@ -23,9 +23,6 @@ body.dark-mode {
     color: #f5f5f5;
 }
 
-body.dark-mode .article-link {
-    color: #006eff;
-}
 
 .name {
     font-weight: 700;
@@ -126,9 +123,12 @@ a {
     transition: color .25s, fill .25s, opacity .25s;
 }
 
-.article-link.dark-mode {
+body.dark-mode .article-link {
     color: #006eff;
 }
+/* .article-link.dark-mode {
+    color: #006eff;
+} */
 
 
 .article-link:hover {
@@ -233,16 +233,25 @@ a {
     position: fixed;
     bottom: 10px;
     right: 20px;
-  }
+}
 
-  button {
-    color: black;
-    background-color: white;
-    border-radius: 5px;
-  }
-  
-  button.dark-mode {
+button {
     color: white;
     background-color: black;
-  }
+    border-radius: 5px;
+}
 
+button:focus {
+    color: white;
+    background-color: black;
+}
+
+body.dark-mode button {
+    color: black;
+    background-color: white;
+}
+
+body.dark-mode button:focus {
+    color: black;
+    background-color: white;
+}
