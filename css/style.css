@@ -9,6 +9,10 @@
     background: #d2a7ff8b
     /* Gecko Browsers */
 }
+/* 
+a:hover {
+    color: #a54bd9;
+} */
 
 body {
     font-family: 'Overpass', Helvetica, sans-serif;
@@ -129,10 +133,10 @@ body.dark-mode .article-link {
 }
 
 
-.article-link:hover {
+/* .article-link:hover {
     text-decoration-color: #0abde3;
     border-bottom: 1px solid #0abde3;
-}
+} */
 
 .end-article-title {
     font-size: 12px;
@@ -169,7 +173,6 @@ body.dark-mode .article-link {
     font-weight: 700;
     color: #37a2ba;
 }
-
 
 .highlight-r {
     font-weight: 700;
