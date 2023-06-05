@@ -237,16 +237,16 @@ body.dark-mode .article-link {
 } */
 
 #toggle-dark-mode {
-    font-size: 40px; 
+    font-size: 35px; 
     border: none;
     outline: none;
     position: fixed;
     bottom: 5px;
-    right: 35px;
+    right: 20px;
   }
 
 button {
-    width: 50px;
+    width: 75px;
     height: 50px;
 }
 
