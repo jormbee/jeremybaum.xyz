@@ -4,5 +4,5 @@ toggleButton.addEventListener('click', () => {
   document.body.classList.toggle('dark-mode');
 
   console.log(document.body.classList)
-  toggleButton.innerText = document.body.classList.contains("dark-mode") ? "Toggle Light Mode" : "Toggle Dark Mode"
+  toggleButton.innerText = document.body.classList.contains("dark-mode") ? "🌞" : "🌚"
 });
