@@ -24,7 +24,7 @@ body {
 }
 
 body.dark-mode {
-    background-color: #0c0c0c;
+    background-color: #2c2c2c;
     color: #f5f5f5;
 }
 
@@ -183,6 +183,11 @@ body.dark-mode .article-link {
 .highlight-o {
     font-weight: 700;
     color: #f39c12;
+}
+
+.highlight-br {
+    font-weight: 700;
+    color: #a78d6c;
 }
 
 .highlight-g {
