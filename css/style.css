@@ -200,10 +200,15 @@ body.dark-mode .article-link {
     color: #16a085;
 }
 
+.highlight-pink {
+    font-weight: 700;
+    color: #ca58b9;
+}
 .highlight-p {
     font-weight: 700;
     color: #8e44ad;
 }
+
 
 .list {
     list-style-position: outside;
