@@ -25,7 +25,7 @@ body {
 
 body.dark-mode {
     background-color: #2c2c2c;
-    color: #f5f5f5;
+    color: #e0e0e0; 
 }
 
 .name {
@@ -204,9 +204,15 @@ body.dark-mode .article-link {
     font-weight: 700;
     color: #ca58b9;
 }
+
 .highlight-p {
     font-weight: 700;
     color: #8e44ad;
+}
+
+.highlight-gry {
+    font-weight: 700;
+    color: #959595;
 }
 
 
