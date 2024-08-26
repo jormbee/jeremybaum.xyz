@@ -28,6 +28,10 @@ body.dark-mode {
     color: #e0e0e0; 
 }
 
+body.dark-mode .header a {
+    color: white !important;
+}
+
 .name {
     display: inline-block;
     width: auto;
@@ -288,3 +292,5 @@ button {
         typing 2.5s steps(40, end) forwards; /* The animation itself */
     position: relative; /* Allows positioning of the typing cursor */
   }
+
+  
