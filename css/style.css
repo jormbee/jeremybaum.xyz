@@ -1,0 +1,302 @@
+@import url('https://fonts.googleapis.com/css2?family=Overpass+Mono:wght@300&family=Overpass:wght@300;800&display=swap');
+
+::selection {
+    background: #d2a7ff8b;
+    /* WebKit/Blink Browsers */
+}
+
+::-moz-selection {
+    background: #d2a7ff8b
+    /* Gecko Browsers */
+}
+
+/* 
+a:hover {
+    color: #a54bd9;
+} */
+
+body {
+    font-family: 'Overpass', Helvetica, sans-serif;
+    font-size: 1.51rem;
+    font-size: 300;
+    background-color: #f5f5f5;
+    color: #2c2c2c;
+}
+
+body.dark-mode {
+    background-color: #2c2c2c;
+    color: #e0e0e0; 
+}
+
+body.dark-mode .header a {
+    color: white !important;
+}
+
+.name {
+    display: inline-block;
+    width: auto;
+    font-weight: 700;
+    font-size: 43px;
+    margin: 0;
+}
+
+.header {
+    padding-top: 10px;
+    width: 100%;
+    font-size: 1.5rem;
+    padding-bottom: 10px;
+}
+
+.me {
+    padding-bottom: 30px;
+    width: 40%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.header-right {
+    float: right;
+    padding-top: 20px;
+    font-weight: 700;
+}
+
+.header-left {
+    float: left;
+    padding-top: 20px;
+    font-weight: 700;
+}
+
+.header-link {
+    text-decoration: none;
+    text-transform: capitalize;
+    padding: 3px 7px 3px 7px;
+    fill: #b6d2ee;
+    border-radius: 5px;
+    font-size: 1.3rem;
+    -webkit-transition: color .25s, fill .25s, opacity .25s;
+    -o-transition: color .25s, fill .25s, opacity .25s;
+    transition: color .25s, fill .25s, opacity .25s;
+    text-decoration: none;
+}
+
+.header-link:hover {
+    fill: #3f444a;
+}
+
+a {
+    color: rgba(37, 99, 235);
+}
+
+.tag {
+    color: #718093;
+    font-weight: 200;
+    text-align: right;
+    font-family: 'Overpass Mono', monospace;
+}
+
+.basic {
+    color: #718093;
+    font-weight: 200;
+}
+
+@media (max-width: 550px) {
+    .tag {
+        text-align: left;
+        padding-bottom: 10px;
+    }
+
+    .article-date {
+        display: none;
+    }
+}
+
+.personal-elem {
+    padding-top: 10px;
+}
+
+.article-date {
+    float: right;
+    font-family: 'Overpass Mono', monospace;
+}
+
+.article-title {
+    float: left;
+}
+
+.article-link {
+    color: #4475b0;
+    border-bottom: 1px solid #d4d7dd;
+    text-decoration: none;
+    -webkit-transition: color .25s, fill .25s, opacity .25s;
+    -o-transition: color .25s, fill .25s, opacity .25s;
+    transition: color .25s, fill .25s, opacity .25s;
+}
+
+body.dark-mode .article-link {
+    color: #c6dfff;
+}
+
+
+/* .article-link:hover {
+    text-decoration-color: #0abde3;
+    border-bottom: 1px solid #0abde3;
+} */
+
+.end-article-title {
+    font-size: 12px;
+}
+
+.end-article-link {
+    text-decoration: none;
+}
+
+.project,
+.article {
+    padding-bottom: 10px;
+}
+
+.link {
+    color: #4c525c;
+    text-decoration: none;
+    -webkit-transition: opacity .25s;
+    -o-transition: opacity .25s;
+    transition: opacity .25s;
+    border-bottom: 1px solid #d4d7dd;
+}
+
+.link:hover {
+    opacity: 0.5;
+}
+
+.highlight-b {
+    font-weight: 700;
+    color: #2980b9;
+}
+
+.highlight-lb {
+    font-weight: 700;
+    color: #37a2ba;
+}
+
+.highlight-r {
+    font-weight: 700;
+    color: #c0392b;
+}
+
+.highlight-ro {
+    font-weight: 700;
+    color: #ff4d4d;
+}
+
+.highlight-o {
+    font-weight: 700;
+    color: #f39c12;
+}
+
+.highlight-br {
+    font-weight: 700;
+    color: #a78d6c;
+}
+
+.highlight-g {
+    font-weight: 700;
+    color: #16a085;
+}
+
+.highlight-pink {
+    font-weight: 700;
+    color: #ca58b9;
+}
+
+.highlight-p {
+    font-weight: 700;
+    color: #8e44ad;
+}
+
+.highlight-pi {
+    font-weight: 700;
+    color: #e17dc1;
+}
+
+
+.highlight-gry {
+    font-weight: 700;
+    color: #959595;
+}
+
+
+.list {
+    list-style-position: outside;
+    padding-left: 15px;
+    font-size: 1.5rem;
+}
+
+.news {
+    border-left: 4px solid #0abde3;
+    font-size: 14px;
+    padding: 10px;
+    margin: 10px;
+}
+
+.subpage {
+    font-weight: 700;
+    font-size: 35px;
+    margin-top: 60px;
+    margin-bottom: 0px;
+}
+
+.back {
+    margin-bottom: 0px;
+}
+
+.year {
+    margin-bottom: 0px;
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+/* @media (prefers-color-scheme: dark) {
+    body {
+        filter: invert(100%);
+        background-color: rgb(29, 32, 31) !important;
+    }
+
+    img {
+        filter: invert(100%);
+    }
+} */
+
+#toggle-dark-mode {
+    font-size: 35px; 
+    border: none;
+    outline: none;
+    position: fixed;
+    bottom: 5px;
+    right: 20px;
+  }
+
+button {
+    width: 75px;
+    height: 50px;
+}
+  
+  /* Define the animation */
+  @keyframes typing {
+    from { max-width: 0 }
+    to { max-width: 100% }
+    100% { border-right: none; }
+  }
+
+  /* Apply the animation to the text */
+  .typewriter {
+    overflow: hidden; /* Ensures the text is not visible outside the containing element */
+    border-right: .15em solid rgb(173, 173, 173); /* reates the typewriter cursor */
+    white-space: nowrap; /* Prevents the text from wrapping */
+    animation: 
+        typing 2.5s steps(40, end) forwards; /* The animation itself */
+    position: relative; /* Allows positioning of the typing cursor */
+  }
+
+  
