@@ -35,8 +35,8 @@ body.dark-mode .header a {
 .name {
     display: inline-block;
     width: auto;
-    font-weight: 700;
-    font-size: 43px;
+    font-weight: 600;
+    font-size: 24px;
     margin: 0;
 }
 
@@ -44,7 +44,24 @@ body.dark-mode .header a {
     padding-top: 10px;
     width: 100%;
     font-size: 1.5rem;
-    padding-bottom: 10px;
+    padding-bottom: 0px;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.social-icons {
+    display: flex;
+    align-items: center;
+}
+
+.bio-description {
+    font-size: 1.51rem;
+    margin-top: 0px;
 }
 
 .me {
@@ -108,6 +125,15 @@ a {
 
     .article-date {
         display: none;
+    }
+
+    .header-content {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .social-icons {
+        margin-top: 15px;
     }
 }
 
@@ -295,7 +321,7 @@ button {
     border-right: .15em solid rgb(173, 173, 173); /* reates the typewriter cursor */
     white-space: nowrap; /* Prevents the text from wrapping */
     animation: 
-        typing 2.5s steps(40, end) forwards; /* The animation itself */
+        typing 2.0s steps(40, end) forwards; /* The animation itself */
     position: relative; /* Allows positioning of the typing cursor */
   }
 
