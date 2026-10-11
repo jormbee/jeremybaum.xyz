@@ -145,7 +145,7 @@ body.dark-mode .book-popover { --book-surface: #353c38; }
     transform: translateX(-50%) rotate(225deg);
 }
 
-.book-title { font-weight: 400; }
+.book-title, .updates-popover { font-weight: 400; }
 .book-title span { font-size: 0.85em; opacity: 0.65; }
 @keyframes book-reveal { from { opacity: 0; } to { opacity: 1; } }
 
@@ -313,8 +313,8 @@ main {
 }
 
 body.dark-mode .photo-thumb {
-    opacity: 0.46;
-    filter: brightness(0.84) saturate(0.76) contrast(0.96);
+    opacity: 0.88;
+    filter: saturate(0.96);
 }
 
 body.dark-mode .photo-thumb:hover,
@@ -325,7 +325,7 @@ body.dark-mode .photo-thumb:focus-visible {
 
 body.dark-mode .photo-wheel:has(.photo-thumb:hover) .photo-thumb:not(:hover),
 body.dark-mode .photo-wheel:has(.photo-thumb:focus-visible) .photo-thumb:not(:focus-visible) {
-    opacity: 0.2;
+    opacity: 0.72;
 }
 
 .photo-lightbox {
@@ -605,3 +605,25 @@ button:focus-visible {
     }
 
 }
+
+/* The update-date trigger reads like text, with a quiet affordance. */
+.currently-trigger,
+.currently-trigger:hover,
+.currently-trigger[aria-expanded="true"] {
+    color: inherit;
+    line-height: inherit;
+    text-decoration-line: underline;
+    text-decoration-style: dotted;
+    text-decoration-color: var(--muted);
+    text-underline-offset: 0.3em;
+    text-decoration-thickness: 1px;
+}
+
+.updates-popover p {
+    margin: 0;
+}
+
+.updates-popover p[hidden] { display: none; }
+.updates-popover p + p { margin-top: 0.25rem; }
+.update-detail { color: var(--muted); }
+.update-detail { white-space: nowrap; }

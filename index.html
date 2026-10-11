@@ -4,20 +4,20 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Jeremy Baum — fascinated by people &amp; actions, geopolitics, architecture, and eccentric societies.">
+    <meta name="description" content="Jeremy Baum — fascinated by geopolitics, architecture, and eccentric societies.">
     <meta name="theme-color" content="#f5f5f5">
     <title>Jeremy Baum</title>
 
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="apple-touch-icon" href="favicon.png">
-    <link rel="stylesheet" href="css/style.css?v=20261010release">
+    <link rel="stylesheet" href="css/style.css?v=20261011typography">
 </head>
 
 <body>
     <div class="container">
         <header class="site-header">
             <h1 class="name">Jeremy Baum</h1>
-            <p class="bio-description">Fascinated by people &amp; actions, geopolitics, architecture<sup class="bio-reference"><button class="reference-trigger" type="button" aria-label="Preview Soviet Bus Stops" aria-expanded="false" aria-controls="book-soviet" data-book="book-soviet">(1)</button></sup><sup class="bio-reference"><button class="reference-trigger" type="button" aria-label="Preview Bauhaus" aria-expanded="false" aria-controls="book-bauhaus" data-book="book-bauhaus">(2)</button></sup>, and eccentric societies.<span id="spotify-listening" hidden> Currently listening to <span id="spotify-album"></span>.</span></p>
+            <p class="bio-description">Fascinated by geopolitics, architecture<sup class="bio-reference"><button class="reference-trigger" type="button" aria-label="Preview Soviet Bus Stops" aria-expanded="false" aria-controls="book-soviet" data-book="book-soviet">(1)</button></sup><sup class="bio-reference"><button class="reference-trigger" type="button" aria-label="Preview Bauhaus" aria-expanded="false" aria-controls="book-bauhaus" data-book="book-bauhaus">(2)</button></sup>, and eccentric societies. <button class="reference-trigger currently-trigger" type="button" aria-label="Current reading and listening update dates" aria-expanded="false" aria-controls="currently-updates" data-book="currently-updates">Currently</button> reading <a class="underlined-link" href="https://www.amazon.com/Why-Were-Polarized-Ezra-Klein-ebook/dp/B07TRNVTZQ" target="_blank" rel="noopener noreferrer">Why We’re Polarized</a> and <a class="underlined-link" href="https://www.amazon.com/Ilyich-Master-Modern-Library-Classics-ebook/dp/B000FBJCNA" target="_blank" rel="noopener noreferrer">The Death of Ivan Ilyich</a><span id="spotify-listening" hidden>, and listening to <span id="spotify-album"></span></span>.</p>
         </header>
 
         <main>
@@ -181,6 +181,11 @@
     </div>
 
 
+        <div class="book-popover updates-popover" id="currently-updates" role="dialog" aria-label="Last updated" hidden>
+            <!-- Update this date when changing the reading list. -->
+            <p><span class="update-topic">Reading</span> <span class="update-detail">updated <time datetime="2026-10-11">Oct 11</time></span></p>
+            <p id="listening-updated-row" hidden><span class="update-topic">Listening</span> <span class="update-detail">updated <time id="listening-updated"></time></span></p>
+        </div>
         <div class="book-popover" id="book-soviet" role="dialog" aria-label="Soviet Bus Stops" hidden>
             <a class="book-title" href="https://www.amazon.com/Soviet-Bus-Stops-Christopher-Herwig/dp/099319110X/" target="_blank" rel="noopener noreferrer">Soviet Bus Stops <span aria-hidden="true">↗</span></a>
         </div>
@@ -188,7 +193,7 @@
             <a class="book-title" href="https://www.amazon.com/Bauhaus-Updated-Magdalena-Droste/dp/3836572826/" target="_blank" rel="noopener noreferrer">Bauhaus <span aria-hidden="true">↗</span></a>
         </div>
 
-    <script src="script.js?v=20261010release"></script>
+    <script src="script.js?v=20261011updates"></script>
 </body>
 
 </html>

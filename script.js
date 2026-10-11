@@ -333,8 +333,13 @@ bookTriggers.forEach((trigger) => {
   trigger.addEventListener('click', () => openBook(trigger));
   trigger.addEventListener('keydown', (event) => {
     if (event.key === 'Tab' && !event.shiftKey && activeBook?.trigger === trigger) {
-      event.preventDefault();
-      card.querySelector('a').focus();
+      const firstLink = card.querySelector('a');
+      if (firstLink) {
+        event.preventDefault();
+        firstLink.focus();
+      } else {
+        closeBook();
+      }
     }
   });
   [trigger, card].forEach((element) => {
@@ -392,6 +397,14 @@ window.addEventListener('scroll', () => closeBook(), { passive: true });
     link.setAttribute('aria-label', `${album.name} on Spotify`);
     placeholder.replaceWith(link);
     document.querySelector('#spotify-listening')?.removeAttribute('hidden');
+    const updatedLabel = document.querySelector('#listening-updated');
+    if (updatedLabel) {
+      updatedLabel.dateTime = new Date(updated).toISOString();
+      updatedLabel.textContent = new Intl.DateTimeFormat('en-US', {
+        month: 'short', day: 'numeric', timeZone: 'America/New_York'
+      }).format(new Date(updated));
+      document.querySelector('#listening-updated-row')?.removeAttribute('hidden');
+    }
   } catch {
     // Keep the listening sentence hidden when Spotify data is unavailable.
   }
