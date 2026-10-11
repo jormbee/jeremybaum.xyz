@@ -1,4 +1,10 @@
 {
-  "album": null,
-  "updatedAt": null
+  "album": {
+    "name": "Amir",
+    "artists": [
+      "Tamino"
+    ],
+    "url": "https://open.spotify.com/album/5RL52Y9Q7wmjcYvibTczjJ"
+  },
+  "updatedAt": "2026-10-11T03:22:00.043Z"
 }
