@@ -1,0 +1,68 @@
+name: Update Spotify album
+on:
+  schedule:
+    - cron: '17 * * * *'
+  workflow_dispatch:
+    inputs:
+      publish_now:
+        description: Refresh the featured album now
+        type: boolean
+        default: true
+permissions:
+  contents: read
+concurrency:
+  group: spotify-collector
+  cancel-in-progress: false
+jobs:
+  collect:
+    permissions:
+      contents: write
+    outputs:
+      changed: ${{ steps.publish.outputs.changed }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Restore encrypted listening state
+        uses: actions/cache/restore@v4
+        with:
+          path: .spotify-private/state.enc
+          key: spotify-state-v1-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: spotify-state-v1-
+      - name: Collect plays and select album
+        env:
+          SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
+          SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
+          SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
+          SPOTIFY_STATE_KEY: ${{ secrets.SPOTIFY_STATE_KEY }}
+          FORCE_PUBLISH: ${{ github.event.inputs.publish_now || 'false' }}
+        run: node scripts/sync-spotify.mjs
+      - name: Save encrypted listening state
+        uses: actions/cache/save@v4
+        with:
+          path: .spotify-private/state.enc
+          key: spotify-state-v1-${{ github.run_id }}-${{ github.run_attempt }}
+      - name: Save public album only
+        id: publish
+        run: |
+          if git diff --quiet -- data/listening.json; then exit 0; fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/listening.json
+          git commit -m 'Update featured Spotify album'
+          git pull --rebase origin main
+          git push origin HEAD:main
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+  deploy:
+    needs: collect
+    if: needs.collect.outputs.changed == 'true'
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    uses: ./.github/workflows/deploy-pages.yml

@@ -1,0 +1,6 @@
+.DS_Store
+.spotify-private/
+_site/
+__pycache__/
+.env
+.env.*

@@ -8,6 +8,7 @@
     --secondary-text: #929a96;
     --section-heading: #46504b;
     --guide: #dce2df;
+    --selection: #d5dce2;
     --link: #a2462d;
     --link-hover: #813722;
     --link-underline: #d0a095;
@@ -22,6 +23,7 @@ body.dark-mode {
     --secondary-text: #a7b0ab;
     --section-heading: #d0d7d3;
     --guide: #37413c;
+    --selection: rgba(213, 220, 226, 0.22);
     --link: #cf756e;
     --link-hover: #df918a;
     --link-underline: #754b49;
@@ -52,7 +54,7 @@ body {
 }
 
 ::selection {
-    background: rgba(0, 128, 100, 0.2);
+    background: var(--selection);
 }
 
 .container {
@@ -76,9 +78,79 @@ body {
 }
 
 .bio-description {
-    margin: 0.6rem 0 0;
-    white-space: nowrap;
+    margin: 1.8rem 0 0;
+    max-width: 62ch;
 }
+
+.bio-reference {
+    margin-left: 0.25em;
+    font-size: 0.7em;
+    line-height: 0;
+}
+
+.reference-trigger {
+    all: unset;
+    color: var(--link);
+    cursor: pointer;
+    line-height: 1;
+}
+
+.reference-trigger:hover,
+.reference-trigger[aria-expanded="true"] {
+    color: var(--link-hover);
+}
+
+.reference-trigger:focus-visible {
+    outline: 2px solid var(--link);
+    outline-offset: 3px;
+}
+
+.book-popover {
+    position: fixed;
+    z-index: 20;
+    --book-surface: #fff;
+    width: max-content;
+    max-width: calc(100vw - 24px);
+    padding: 0.9rem 1.2rem;
+    border: 1px solid var(--guide);
+    border-radius: 0.8rem;
+    background: var(--book-surface);
+    color: var(--foreground);
+    box-shadow: 0 3px 14px rgba(0, 0, 0, 0.06);
+    font-size: 1.3rem;
+    line-height: 1.4;
+    animation: book-reveal 120ms ease-out;
+}
+
+body.dark-mode .book-popover { --book-surface: #353c38; }
+
+.book-popover[hidden] { display: none; }
+
+.book-popover::after {
+    content: '';
+    position: absolute;
+    left: var(--arrow-x);
+    bottom: -5px;
+    width: 8px;
+    height: 8px;
+    background: var(--book-surface);
+    border-right: 1px solid var(--guide);
+    border-bottom: 1px solid var(--guide);
+    transform: translateX(-50%) rotate(45deg);
+}
+
+.book-popover[data-side="below"]::after {
+    top: -5px;
+    bottom: auto;
+    transform: translateX(-50%) rotate(225deg);
+}
+
+.book-title { font-weight: 400; }
+.book-title span { font-size: 0.85em; opacity: 0.65; }
+@keyframes book-reveal { from { opacity: 0; } to { opacity: 1; } }
+
+
+
 
 main {
     flex: 0 0 auto;
@@ -482,10 +554,6 @@ button:focus-visible {
 }
 
 @media (max-width: 760px) {
-    .bio-description {
-        white-space: normal;
-    }
-
     .photo-lightbox-previous {
         left: 0.5rem;
     }
@@ -526,6 +594,7 @@ button:focus-visible {
 }
 
 @media (prefers-reduced-motion: reduce) {
+    .book-popover { animation: none; }
     body,
     a,
     .photo-thumb,

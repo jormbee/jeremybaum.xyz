@@ -272,3 +272,127 @@ photoLightbox.addEventListener('click', (event) => {
 
   if (!clickedPreviewContent) photoLightbox.close();
 });
+
+
+// Hover previews remain open across the gap and while their links have focus.
+const bookTriggers = [...document.querySelectorAll('.reference-trigger')];
+let activeBook = null;
+let bookCloseTimer;
+const closeBook = (restoreFocus = false) => {
+  clearTimeout(bookCloseTimer);
+  if (!activeBook) return;
+  const { trigger, card } = activeBook;
+  if (restoreFocus) trigger.focus();
+  activeBook = null;
+  card.hidden = true;
+  trigger.setAttribute('aria-expanded', 'false');
+};
+const positionBook = () => {
+  if (!activeBook) return;
+  const { trigger, card, pointer } = activeBook;
+  const rect = trigger.getBoundingClientRect();
+  const width = card.offsetWidth;
+  const anchorX = pointer ? pointer.x : rect.left + rect.width / 2;
+  const anchorBottom = pointer ? pointer.y : rect.bottom;
+  const left = Math.max(12, Math.min(anchorX - width / 2, window.innerWidth - width - 12));
+  card.dataset.side = 'below';
+  card.style.left = `${left}px`;
+  card.style.top = `${anchorBottom + 14}px`;
+  card.style.setProperty('--arrow-x', `${Math.max(12, Math.min(width - 12, anchorX - left))}px`);
+};
+const openBook = (trigger, pointer = null) => {
+  clearTimeout(bookCloseTimer);
+  if (activeBook?.trigger === trigger) return;
+  closeBook();
+  const card = document.getElementById(trigger.dataset.book);
+  activeBook = { trigger, card, pointer };
+  card.hidden = false;
+  trigger.setAttribute('aria-expanded', 'true');
+  positionBook();
+};
+const scheduleBookClose = () => {
+  clearTimeout(bookCloseTimer);
+  bookCloseTimer = setTimeout(() => {
+    if (!activeBook) return;
+    const { trigger, card } = activeBook;
+    if (trigger.matches(':hover') || card.matches(':hover') || card.contains(document.activeElement) || document.activeElement === trigger) return;
+    closeBook();
+  }, 180);
+};
+bookTriggers.forEach((trigger) => {
+  const card = document.getElementById(trigger.dataset.book);
+  trigger.addEventListener('pointerenter', (event) => {
+    if (event.pointerType !== 'touch') openBook(trigger, { x: event.clientX, y: event.clientY });
+  });
+  trigger.addEventListener('pointermove', (event) => {
+    if (event.pointerType === 'touch' || activeBook?.trigger !== trigger) return;
+    activeBook.pointer = { x: event.clientX, y: event.clientY };
+    positionBook();
+  });
+  trigger.addEventListener('focus', () => openBook(trigger));
+  trigger.addEventListener('click', () => openBook(trigger));
+  trigger.addEventListener('keydown', (event) => {
+    if (event.key === 'Tab' && !event.shiftKey && activeBook?.trigger === trigger) {
+      event.preventDefault();
+      card.querySelector('a').focus();
+    }
+  });
+  [trigger, card].forEach((element) => {
+    element.addEventListener('pointerleave', scheduleBookClose);
+    element.addEventListener('focusout', scheduleBookClose);
+  });
+  card.addEventListener('pointerenter', () => clearTimeout(bookCloseTimer));
+  card.addEventListener('focusin', () => clearTimeout(bookCloseTimer));
+  card.addEventListener('keydown', (event) => {
+    const links = [...card.querySelectorAll('a')];
+    if (event.key !== 'Tab') return;
+    if (event.shiftKey && document.activeElement === links[0]) {
+      event.preventDefault();
+      trigger.focus();
+    } else if (!event.shiftKey && document.activeElement === links[links.length - 1]) {
+      event.preventDefault();
+      const focusable = [...document.querySelectorAll('a[href], button:not([disabled]), [tabindex="0"]')].filter((element) => element.getClientRects().length && !element.closest('.book-popover'));
+      const next = focusable[focusable.indexOf(trigger) + 1];
+      closeBook();
+      next?.focus();
+    }
+  });
+});
+document.addEventListener('pointerdown', (event) => {
+  if (activeBook && !activeBook.card.contains(event.target) && !activeBook.trigger.contains(event.target)) closeBook();
+});
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape' && activeBook) {
+    const restore = activeBook.card.contains(document.activeElement);
+    closeBook(restore);
+  }
+});
+window.addEventListener('resize', positionBook);
+window.addEventListener('scroll', () => closeBook(), { passive: true });
+
+
+// Only the selected album is fetched; Spotify credentials never reach visitors.
+(async () => {
+  const placeholder = document.querySelector('#spotify-album');
+  if (!placeholder) return;
+  try {
+    const response = await fetch('data/listening.json', { cache: 'no-cache' });
+    if (!response.ok) return;
+    const { album, updatedAt } = await response.json();
+    const updated = Date.parse(updatedAt);
+    if (!album?.name || !Number.isFinite(updated) || Date.now() - updated > 14 * 86400000) return;
+    const url = new URL(album.url);
+    if (url.origin !== 'https://open.spotify.com' || !/^\/album\/[A-Za-z0-9]+$/.test(url.pathname)) return;
+    const link = document.createElement('a');
+    link.className = 'underlined-link';
+    link.href = url.href;
+    link.textContent = album.name;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    link.setAttribute('aria-label', `${album.name} on Spotify`);
+    placeholder.replaceWith(link);
+    document.querySelector('#spotify-listening')?.removeAttribute('hidden');
+  } catch {
+    // Keep the listening sentence hidden when Spotify data is unavailable.
+  }
+})();
